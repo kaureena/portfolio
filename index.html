@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav">
+        <a href="#hero" class="logo">Your Name</a>
+        <ul class="nav-list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="hero" class="hero">
+        <div class="hero-inner">
+          <div class="hero-text">
+            <h1>Hi, I'm Your Name</h1>
+            <p class="role">I'm a <span id="rotating-role">Frontend Developer</span></p>
+            <p class="lede">I build accessible, performant web experiences.</p>
+            <a class="cta" href="#projects">See my work</a>
+          </div>
+          <div class="hero-image">
+            <img src="about.svg" alt="Profile" />
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="about">
+        <div class="container">
+          <h2>About</h2>
+          <div class="about-grid">
+            <div>
+              <p>
+                Short bio copied from your portfolio: passionate about building rich web
+                interfaces and learning new technologies. Experienced in React, TypeScript,
+                and accessible UI.
+              </p>
+            </div>
+            <div>
+              <ul class="meta">
+                <li><strong>Location:</strong> City, Country</li>
+                <li><strong>Email:</strong> <a href="mailto:you@example.com">you@example.com</a></li>
+                <li><strong>Website:</strong> <a href="/">your-website.com</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="experience">
+        <div class="container">
+          <h2>Experience & Education</h2>
+          <div class="tabs" role="tablist" aria-label="Experience tabs">
+            <button class="tab active" data-tab="work">Work</button>
+            <button class="tab" data-tab="education">Education</button>
+            <button class="tab" data-tab="certs">Certifications</button>
+          </div>
+          <div class="tab-panels">
+            <div class="panel active" id="work">
+              <article class="card">
+                <h3>Senior Developer — Acme Co</h3>
+                <p class="muted">2021 — Present</p>
+                <p>Worked on product UIs, performance, and accessibility.</p>
+              </article>
+            </div>
+            <div class="panel" id="education">
+              <article class="card">
+                <h3>BSc Computer Science</h3>
+                <p class="muted">University Name — 2016 — 2020</p>
+              </article>
+            </div>
+            <div class="panel" id="certs">
+              <article class="card">
+                <h3>Certifications</h3>
+                <ul>
+                  <li>Certification A</li>
+                  <li>Certification B</li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="skills">
+        <div class="container">
+          <h2>Skills</h2>
+          <div class="chips">
+            <span class="chip">JavaScript</span>
+            <span class="chip">TypeScript</span>
+            <span class="chip">React</span>
+            <span class="chip">Tailwind</span>
+            <span class="chip">Accessibility</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="projects">
+        <div class="container">
+          <h2>Projects</h2>
+          <div class="grid">
+            <article class="card">
+              <h3>Project One</h3>
+              <p>Short description and link.</p>
+            </article>
+            <article class="card">
+              <h3>Project Two</h3>
+              <p>Short description and link.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="contact">
+        <div class="container">
+          <h2>Contact</h2>
+          <p>
+            Reach out at <a href="mailto:you@example.com">you@example.com</a> or connect on
+            LinkedIn.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">© Your Name — Built with love</div>
+    </footer>
+
+    <script>
+      // rotating roles
+      (function(){
+        const roles = [
+          'Frontend Developer', 'UI Engineer', 'Web Performance Engineer',
+          'Accessibility Advocate', 'TypeScript Fan', 'React Enthusiast'
+        ];
+        let i = 0;
+        const el = document.getElementById('rotating-role');
+        if(el){
+          setInterval(()=>{
+            i = (i+1) % roles.length;
+            el.textContent = roles[i];
+          }, 2200);
+        }
+      })();
+
+      // tabs
+      document.addEventListener('click', (e)=>{
+        const t = e.target.closest('.tab');
+        if(!t) return;
+        const parent = t.parentElement;
+        parent.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+        t.classList.add('active');
+        const tab = t.getAttribute('data-tab');
+        document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active', p.id===tab));
+      });
+    </script>
+  </body>
+</html>
